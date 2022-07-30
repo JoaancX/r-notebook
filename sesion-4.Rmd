@@ -1,0 +1,174 @@
+Function
+
+```{r}
+length((linkedin))
+head(linkedin,2)
+tail(linkedin,2)
+
+
+help("matrix")
+?lenght
+matrix()
+```
+use a function
+
+```{r}
+avg_li <- mean(linkedin)
+avg_li
+
+
+```
+write your own function
+
+
+```{r}
+pow_two <- functino(arg){
+  arg**2
+}
+
+pow_two(2)
+
+sum_abs <- function(arg1, arg2){
+  abs(arg1) + abs(arg2)
+  }
+
+sum_abs (-2,3)
+
+hello <- function(){
+  print("hi there!")
+  retunr(TRUE)
+
+}
+  
+hello()
+
+pow_to <- function(x,print_info=TRUE){
+  y <- x^2
+  if (print_info){
+    print(paste(x,"to the power tho equals",y))
+    
+  }
+  return(y)
+}
+  pow_two(3,FALSE)
+  
+  intepret <- function(num_views){
+    if(num_vibes >15){
+      print("you are popular")
+      return(num_views)
+    
+    }else{
+      print("tri to be mor visible!")
+      return(0)
+      
+    }
+    
+  }
+  
+interpet(linkedin[2])
+
+interpert_all <- function(views, retunr_sum=TRUE){
+  count <- 0
+  for(v in views){
+    count <- count + interpret(v)
+  }
+  if(return_sum){
+  return(count)
+  } else{
+  return(NULL)
+    
+}
+
+ 
+  
+interpert_all(linkedin)
+  
+```
+
+```{r}
+library(ggplot2)
+
+mtcars
+
+ggplot(mtcars $wt, mtcars $hp)
+
+```
+
+this apply family 
+
+lapply 
+
+```{r}
+
+pioneers <- c("GAUSS:1777", "BAYES:1702","PASCAL:1623","PEARSON:1857")
+
+split_math <- strsplit(pioneers, split =":")
+
+split_low <- lapply(split_math, tolower)
+
+
+```
+
+use lapply with additional arguments
+
+```{r}
+select_el < function(x,index){
+  x[index]
+}
+
+select_el(split_low.1)
+
+names <- lapply(split_low, select_el, 1)
+years <- lapply(split_low, select_el, 2)
+
+```
+
+sapply
+
+```{r}
+names <- sapply(split_low, select:el, 1)
+
+
+extreme_avg <- function(x){
+  (nin(x) + max(x/2))
+  
+}
+
+vec1 <- c(3,8,7,6)
+vec2 <- c(8,8,7,2)
+vec3 <- c(10,1,11,6)
+
+tempo <- list(vec1, vec2, vec3)
+
+sapply(tempo, extreme_avg)
+lapply(tempo, extreme_avg)
+
+```
+
+vapply
+
+```{r}
+
+basics <- functino(x){
+  c(min = min(x), mean(x), max =max(x)
+    
+}
+
+tempo
+vapply(tempo, basics,numeric(3))
+```
+
+
+
+
+mathemnatical utilites
+
+```{r}
+
+errors <- c(1,9,-2,6,4,0,-5,5,3,4,7,3)
+
+
+
+```
+
+
