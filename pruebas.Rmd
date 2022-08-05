@@ -14,8 +14,8 @@ Variable assigment
 x <- 10
 x
 
-y <- 9
-
+y <- 9ewrfds
+sdfsdffsadfasfasdfasdfasf
 x+y
 
 result <- x-y
