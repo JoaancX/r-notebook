@@ -1,0 +1,69 @@
+
+
+```{r}
+library("gapminder")
+library("dplyr")
+
+gapminder
+```
+
+Filtering for one year
+
+```{r}
+gapminder %>%
+  filter(year==1957)
+
+
+```
+Filtering for one country and one year
+
+```{r}
+gapminder %>%
+  filter(year==1957, country == "China")
+
+
+```
+Arranging observation by life expectancy 
+
+```{r}
+gapminder %>%
+  arrange(lifeExp)
+
+
+# Sort in Descendin order of lifeExp
+
+gapminder %>%
+  arrange(desc(lifeExp))
+
+```
+Filtering and arranging
+
+```{r}
+gapminder %>%
+  filter(year ==)
+
+
+```
+Using mutate to change or create a column
+
+```{r}
+#Use mutate to change lifeExp to be in months
+
+gapminder %>%
+  mutate(lifeExp == 12*lifeExp)
+
+# Use mtate to create a new colum callder lifeExpMonths
+gapminder %>%
+  mutate(lifeExpMonths = 12*lifeExp)
+```
+Combining filter, mutate and arrange
+
+```{r}
+gapminder %>%
+  filter(year==2007) %>%
+  mutate(lifeExpMonths = 12*lifeExp) %>%
+  arrange(desc(lifeExpMonths))
+
+
+```
+
