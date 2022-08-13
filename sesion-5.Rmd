@@ -66,4 +66,21 @@ gapminder %>%
 
 
 ```
+Visualizing with ggplot2
+
+```{r}
+
+gapminder_1925 <- gapminder %>%
+  filter(year ==1952)
+
+library(ggplot2)
+
+ggplot(gapminder_1925, aes(x=pop, y=gdpPercap)) +
+  geom_point()
+
+```
+```{r}
+ggplot(gapminder_1925, aes(x=pop, y=lifeExp)) +
+  geom_point()
+```
 
