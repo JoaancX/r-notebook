@@ -96,4 +96,182 @@ ggplot(oceania_1952,aes(x=country, y=gdpPercap))+
 
 
 ```
+Histogram
+
+```{r}
+library(gapminder)
+library(ggplot2)
+library(dplyr)
+
+gapminder
+
+gapminder_1952 <- gapminder %>%
+  filter(year==1952)%>%
+  mutate(pop_by_mil = pop/10000000)
+
+gapminder_1952
+
+ggplot(gapminder_1952, aes(x=pop_by_mil))+
+  geom_histogram(bins = 50)
+
+
+```
+
+
+Data Manipulation With dplyr
+```{r}
+library(tidyverse)
+counties <- read_csv('counties.csv')
+glimpse(counties)
+
+counties
+
+```
+Select columns
+```{r}
+
+counties %>%
+  select(state,county, population,men,women)
+
+counties_selected <- counties %>%
+  select(state,county,population,private_work,public_work,self_employed)
+
+counties_selected %>%
+  arrange(public_work)
+
+counties_selected <- counties %>%
+  select(state,county,population)
+
+counties_selected %>%
+  filter(population>1000000)
+
+counties_selected <- counties %>%
+  select(state,county,population,private_work,public_work,self_employed)
+
+counties_selected %>%
+  filter(state =="Texas", population >10000) %>%
+  arrange(desc(private_work))
+
+```
+select mutate filter and arrange
+
+```{r}
+counties %>%
+select(state,county,Population,men,women)
+mutate(proportion_men = men)
+
+```
+
+the verb count
+
+```{r}
+select_counties <- counties %>%
+  select(state, region, county,population,citizens)
+  
+cpimtoes_selected <- counties%>%
+  count(region, sort =TRUE) %>%
+  arrange(desc(n))
+ 
+
+```
+Counting citizens by state
+
+```{r}
+select_counties <- counties %>%
+  select(county,region,state,population,citizens)
+
+counties_selected %>%
+  count(state, wt = citizenz) %>%
+  arrange(desc(n))
+
+```
+
+
+mutate and counting
+
+```{r}
+select_counties <- counties %>%
+  select(county,region,state,population,walk)
+
+counties_selected %>%
+  mutate(population_walk = population*walk/100) %>%
+  count(state, wt=population_walk, sort =TRUE)
+  
+```
+Sumarizing
+
+```{r}
+counties_selected <- counties %>%
+  select(county,population,income,unemployment)
+
+
+counties_selected %>%
+  summairze(min_population =min(population), max_unemployment = max(unemployment), averagen_income = mean(income))
+```
+Summarizing by state
+
+```{r}
+
+counties_selected <- counties %>%
+  select(state, county,population,land_area)
+
+counties_selected %>%
+  group_by(state) %>%
+  summarize(total_area=sum(land_area), total_population = sum(population))%>%
+  mutate(density=total_population/total_area)
+  arrange(desc(density))
+
+  
+  counties_selected %>%
+    group_by(region,state) %>%
+    summarize(total_pop=sum(population)) %>%
+    summarize(average_pop=mean(total_pop), median_pop=median(total_pop))
+
+```
+Top_n verb
+
+```{r}
+counties_selected <- counties %>%
+  select(region,state,county,metro,population,walk)
+
+counties_selected %>%
+  group_by(region) %>%
+  top_n(1, walk)
+
+counties_selected <- counties %>%
+  select(region,state,county,metro,population,income)
+
+counties_selected %>%
+  group_by(region,state) %>%
+  summarize(average_income=mean(income)) %>%
+  top_n(1,average_income)
+
+```
+
+```{r}
+counties_selected <- counties %>%
+  select(state,metro,population)
+
+counties_selected %>%
+  group_by(state,metro) %>%
+  summarize(total_pop = sum(population)) %>%
+  top_n(1,total_pop) %>%
+  count(metro)
+
+
+```
+Selecting columns
+
+```{r}
+counties %>%
+  select(state,county,population,professional) %>%
+  arrange(desc(serivce))
+
+counties %>%
+  select(state,county,population,ends_with("work")) %>%
+  filter(public_work >= 50)
+
+
+
+```
 
